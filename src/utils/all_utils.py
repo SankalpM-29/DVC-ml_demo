@@ -1,4 +1,6 @@
+from operator import index
 from re import L
+from idna import InvalidCodepointContext
 import yaml
 import os
 
@@ -12,3 +14,6 @@ def create_directory(dirs: list):
     for dir_path in dirs:
         os.makedirs(dir_path, exist_ok=True)
         print(f"Directory created at {dir_path}")
+
+def save_local_df(data, data_path, index = False):
+    data.to_csv(data_path, index = index, sep = ',')
