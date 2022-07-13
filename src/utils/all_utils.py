@@ -3,6 +3,7 @@ from re import L
 from idna import InvalidCodepointContext
 import yaml
 import os
+import json
 
 def read_yaml(path_to_yaml: str) -> dict:
     with open(path_to_yaml) as yaml_file:
@@ -17,3 +18,8 @@ def create_directory(dirs: list):
 
 def save_local_df(data, data_path, index = False):
     data.to_csv(data_path, index = index, sep = ',')
+
+def save_reports(report: dict, report_path: str, indentation=4):
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=indentation)
+    print(f"reports are saved at {report_path}")
